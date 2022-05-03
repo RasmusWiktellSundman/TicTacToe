@@ -54,12 +54,8 @@ public class GameEngine {
 		nextPlayer = (nextPlayer == 'x' ? 'o' : 'x');
 	}
 
-	public void moveNextPlayer(int x, int y) {
-		try {
+	public void moveNextPlayer(int x, int y) throws TileOccupiedException {
 			addMove(x, y, getNextPlayer());
 			updateNextPlayer();
-		} catch (TileOccupiedException e) {
-			Main.setErrorMessage("Rutan är upptagen, välj en annan!");
-		}
 	}
 }

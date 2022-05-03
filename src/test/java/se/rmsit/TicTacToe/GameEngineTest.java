@@ -86,7 +86,7 @@ public class GameEngineTest {
 	}
 
 	@Test
-	void updatingNextPlayerOnNextPlayerMoveAndAddingMove() {
+	void updatingNextPlayerOnNextPlayerMoveAndAddingMove() throws TileOccupiedException {
 		char[][] expectedResult = new char[3][3];
 		expectedResult[0][0] = 'x';
 		engine.moveNextPlayer(0, 0);
