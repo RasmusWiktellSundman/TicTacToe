@@ -94,7 +94,71 @@ public class GameEngineTest {
 		engine.moveNextPlayer(1, 2);
 		expectedResult[2][1] = 'o';
 		assertArrayEquals(expectedResult, engine.getMoves());
+	}
 
+	@Test
+	void canGetPlayerOnTile() throws TileOccupiedException {
+		engine.addMove(0, 0, 'x');
+		assertEquals('x', engine.getPlayerOnTile(0, 0));
+
+		assertEquals('\u0000', engine.getPlayerOnTile(1, 0));
+
+		engine.addMove(2, 2, 'o');
+		assertEquals('o', engine.getPlayerOnTile(2, 2));
+	}
+
+	@Test
+	void checkIf3InARowIsCalculatedCorrectly() throws TileOccupiedException {
+		engine.addMove(0, 0, 'x');
+		engine.addMove(1, 0, 'x');
+		assertFalse(engine.hasVictory('x'));
+
+		engine.addMove(2, 0, 'x');
+		assertTrue(engine.hasVictory('x'));
+
+		assertFalse(engine.hasVictory('o'));
+
+		engine = new GameEngine();
+		engine.addMove(0, 1, 'o');
+		engine.addMove(1, 1, 'o');
+		engine.addMove(2, 1, 'o');
+		assertTrue(engine.hasVictory('o'));
+
+		engine = new GameEngine();
+		engine.addMove(0, 0, 'o');
+		engine.addMove(0, 1, 'o');
+		engine.addMove(0, 2, 'o');
+		assertTrue(engine.hasVictory('o'));
+
+		engine = new GameEngine();
+		engine.addMove(0, 0, 'o');
+		engine.addMove(1, 1, 'o');
+		engine.addMove(2, 2, 'o');
+		assertTrue(engine.hasVictory('o'));
+
+		engine = new GameEngine();
+		engine.addMove(2, 0, 'o');
+		engine.addMove(1, 1, 'o');
+		engine.addMove(0, 2, 'o');
+		assertTrue(engine.hasVictory('o'));
+
+		engine = new GameEngine();
+		engine.addMove(0, 0, 'o');
+		engine.addMove(1, 1, 'x');
+		engine.addMove(2, 2, 'o');
+		assertFalse(engine.hasVictory('o'));
+
+		engine = new GameEngine();
+		engine.addMove(0, 0, 'x');
+		engine.addMove(2, 0, 'x');
+		engine.addMove(0, 2, 'x');
+		engine.addMove(2, 1, 'x');
+		engine.addMove(1, 2, 'x');
+		engine.addMove(1, 0, 'o');
+		engine.addMove(0, 1, 'o');
+		engine.addMove(1, 1, 'o');
+		engine.addMove(2, 2, 'o');
+		assertFalse(engine.hasVictory('x'));
 	}
 
 }
