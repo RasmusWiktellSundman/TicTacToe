@@ -24,9 +24,9 @@ public class GameEngine {
 	}
 
 	private boolean validCoordinates(int x, int y) {
-		if(x < 0 || x > 2)
+		if(x < 0 || x > Game.TILE_LENGTH - 1)
 			return false;
-		if(y < 0 || y > 2)
+		if(y < 0 || y > Game.TILE_LENGTH - 1)
 			return false;
 		return true;
 	}
