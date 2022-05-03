@@ -20,7 +20,6 @@ public class GamePanel {
 		int x = 0;
 		int y = 0;
 		for (Component component : panelGame.getComponents()) {
-			System.out.println(component.getName());
 			if(component.getName() != null && component.getName().contains("tile")) {
 				buttons[x][y] = (JButton) component;
 				x++;
