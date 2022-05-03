@@ -73,4 +73,28 @@ public class GameEngineTest {
 		});
 	}
 
+	@Test
+	void canGetNextPlayer() {
+		assertEquals(engine.getNextPlayer(), 'x');
+	}
+
+	@Test
+	void canUpdateNextPlayer() {
+		assertEquals(engine.getNextPlayer(), 'x');
+		engine.updateNextPlayer();
+		assertEquals(engine.getNextPlayer(), 'o');
+	}
+
+	@Test
+	void updatingNextPlayerOnNextPlayerMoveAndAddingMove() {
+		char[][] expectedResult = new char[3][3];
+		expectedResult[0][0] = 'x';
+		engine.moveNextPlayer(0, 0);
+		assertArrayEquals(expectedResult, engine.getMoves());
+		engine.moveNextPlayer(1, 2);
+		expectedResult[1][2] = 'o';
+		assertArrayEquals(expectedResult, engine.getMoves());
+
+	}
+
 }

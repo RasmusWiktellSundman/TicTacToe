@@ -7,6 +7,7 @@ import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
 public class GameEngine {
 	// Information om vilka drag som gjorts på vilken position i koordinat systemet, där tiles[0][0] är högst upp till vänster
 	private final char[][] tiles = new char[3][3];
+	private char nextPlayer = 'x';
 
 	public void addMove(int x, int y, char player) throws TileOccupiedException {
 		// Kollar så rätt spelartyp skickas med (x eller o)
@@ -43,5 +44,22 @@ public class GameEngine {
 	// Getters och setters
 	public char[][] getMoves() {
 		return tiles;
+	}
+
+	public char getNextPlayer() {
+		return nextPlayer;
+	}
+
+	public void updateNextPlayer() {
+		nextPlayer = (nextPlayer == 'x' ? 'o' : 'x');
+	}
+
+	public void moveNextPlayer(int x, int y) {
+		try {
+			addMove(x, y, getNextPlayer());
+		} catch (TileOccupiedException e) {
+			// Todo: Show error message on screen
+		}
+		updateNextPlayer();
 	}
 }
