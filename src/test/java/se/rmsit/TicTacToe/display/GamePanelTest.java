@@ -2,7 +2,7 @@ package se.rmsit.TicTacToe.display;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import se.rmsit.TicTacToe.Main;
+import se.rmsit.TicTacToe.Game;
 
 import javax.swing.*;
 
@@ -19,8 +19,8 @@ class GamePanelTest {
 	@Test
 	void canCreateAndInitializeButtonsArray() {
 		JButton[][] buttons = gamePanel.getButtons();
-		for (int x = 0; x < Main.TILE_LENGTH; x++) {
-			for (int y = 0; y < Main.TILE_LENGTH; y++) {
+		for (int x = 0; x < Game.TILE_LENGTH; x++) {
+			for (int y = 0; y < Game.TILE_LENGTH; y++) {
 				assertInstanceOf(JButton.class, buttons[x][y]);
 			}
 		}

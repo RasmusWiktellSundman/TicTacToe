@@ -2,7 +2,7 @@ package se.rmsit.TicTacToe;
 
 import se.rmsit.TicTacToe.display.MainFrame;
 
-public class Main {
+public class Game {
 	// Antal rutor på en rad
 	public static final int TILE_LENGTH = 3;
 	private static MainFrame mainFrame;
