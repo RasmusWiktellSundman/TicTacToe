@@ -21,7 +21,7 @@ public class GamePanel {
 		int y = 0;
 		for (Component component : panelGame.getComponents()) {
 			if(component.getName() != null && component.getName().contains("tile")) {
-				buttons[x][y] = (JButton) component;
+				buttons[y][x] = (JButton) component;
 				x++;
 				// Nollställ x när vi kommer till slutet av en rad och öka y
 				if(x > Game.TILE_LENGTH - 1) {
@@ -33,13 +33,13 @@ public class GamePanel {
 	}
 
 	private void addButtonListeners() {
-		for (int x = 0; x < Game.TILE_LENGTH; x++) {
-			for (int y = 0; y < Game.TILE_LENGTH; y++) {
+		for (int y = 0; y < Game.TILE_LENGTH; y++) {
+			for (int x = 0; x < Game.TILE_LENGTH; x++) {
 				// Variablerna behöver vara final för att kunna användas i event lyssnaren
 				int finalX = x;
 				int finalY = y;
 				// Lägger till lyssnare för knapptryck
-				buttons[x][y].addActionListener(e -> {
+				buttons[y][x].addActionListener(e -> {
 					GameEngine engine = Game.getGameEngine();
 					// Tar bort gamla felmeddelanden
 					Game.removeErrorMessage();

@@ -20,7 +20,7 @@ public class GameEngine {
 		if(isSquareOccupied(x, y)) {
 			throw new TileOccupiedException();
 		}
-		tiles[x][y] = player;
+		tiles[y][x] = player;
 	}
 
 	private boolean validCoordinates(int x, int y) {
@@ -33,7 +33,7 @@ public class GameEngine {
 
 	private boolean isSquareOccupied(int x, int y) {
 		// Kollar om char-arrayen innehåller chars default värde. Om den inte gör det, är den platsen upptagen
-		return tiles[x][y] != '\u0000';
+		return tiles[y][x] != '\u0000';
 	}
 
 	private boolean validatePlayer(char player) {

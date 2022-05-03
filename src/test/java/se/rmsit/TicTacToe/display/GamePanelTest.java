@@ -19,9 +19,9 @@ class GamePanelTest {
 	@Test
 	void canCreateAndInitializeButtonsArray() {
 		JButton[][] buttons = gamePanel.getButtons();
-		for (int x = 0; x < Game.TILE_LENGTH; x++) {
-			for (int y = 0; y < Game.TILE_LENGTH; y++) {
-				assertInstanceOf(JButton.class, buttons[x][y]);
+		for (int y = 0; y < Game.TILE_LENGTH; y++) {
+			for (int x = 0; x < Game.TILE_LENGTH; x++) {
+				assertInstanceOf(JButton.class, buttons[y][x]);
 			}
 		}
 	}

@@ -28,7 +28,7 @@ public class GameEngineTest {
 		engine.addMove(0, 0, 'x');
 		assertArrayEquals(expectedResult, engine.getMoves());
 		engine.addMove(1, 2, 'o');
-		expectedResult[1][2] = 'o';
+		expectedResult[2][1] = 'o';
 		assertArrayEquals(expectedResult, engine.getMoves());
 	}
 
@@ -92,7 +92,7 @@ public class GameEngineTest {
 		engine.moveNextPlayer(0, 0);
 		assertArrayEquals(expectedResult, engine.getMoves());
 		engine.moveNextPlayer(1, 2);
-		expectedResult[1][2] = 'o';
+		expectedResult[2][1] = 'o';
 		assertArrayEquals(expectedResult, engine.getMoves());
 
 	}
