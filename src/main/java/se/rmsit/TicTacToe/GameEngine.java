@@ -57,9 +57,9 @@ public class GameEngine {
 	public void moveNextPlayer(int x, int y) {
 		try {
 			addMove(x, y, getNextPlayer());
+			updateNextPlayer();
 		} catch (TileOccupiedException e) {
-			// Todo: Show error message on screen
+			Main.setErrorMessage("Rutan är upptagen, välj en annan!");
 		}
-		updateNextPlayer();
 	}
 }

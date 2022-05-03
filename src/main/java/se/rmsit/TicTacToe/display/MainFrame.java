@@ -6,6 +6,7 @@ public class MainFrame extends JFrame {
 
 	private JPanel panelMain;
 	private JButton startGameButton;
+	private JLabel labelError;
 
 	public MainFrame(String title) {
 		super(title);
@@ -15,6 +16,10 @@ public class MainFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public void setErrorMessage(String message) {
+		labelError.setText(message);
 	}
 
 }
