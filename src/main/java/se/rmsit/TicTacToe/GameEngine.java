@@ -1,5 +1,6 @@
 package se.rmsit.TicTacToe;
 
+import se.rmsit.TicTacToe.display.ResultPanel;
 import se.rmsit.TicTacToe.exceptions.InvalidCoordinatesException;
 import se.rmsit.TicTacToe.exceptions.InvalidPlayerTypeException;
 import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
@@ -31,12 +32,10 @@ public class GameEngine {
 
 	private void handleVictory() {
 		if(hasVictory('x')) {
-			// todo: show victory
-			System.out.println("Player x won");
+			ResultPanel.addResult('x', "Testing");
 		}
 		if(hasVictory('o')) {
-			// todo: show victory
-			System.out.println("Player o won");
+			ResultPanel.addResult('o', "Testing");
 		}
 		// todo: check for draw
 	}
