@@ -50,7 +50,7 @@ public class GamePanel {
 						Game.getMainFrame().updateNextPlayer(engine.getNextPlayer());
 
 						JButton button = (JButton) e.getSource();
-						button.setText(player + "");
+						button.setText(Character.toUpperCase(player) + "");
 					} catch (TileOccupiedException ex) {
 						Game.setErrorMessage("Rutan är upptagen, välj en annan!");
 					}
