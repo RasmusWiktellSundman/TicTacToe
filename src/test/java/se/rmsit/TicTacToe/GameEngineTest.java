@@ -2,6 +2,8 @@ package se.rmsit.TicTacToe;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import se.rmsit.TicTacToe.managers.TileAndMoveManager;
+import se.rmsit.TicTacToe.managers.VictoryManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,5 +32,15 @@ public class GameEngineTest {
 		assertFalse(engine.isRunning());
 		engine.setRunning(true);
 		assertTrue(engine.isRunning());
+	}
+
+	@Test
+	void canGetMoveTileManager() {
+		assertInstanceOf(TileAndMoveManager.class, engine.getTileAndMoveManager());
+	}
+
+	@Test
+	void canGetVictoryManager() {
+		assertInstanceOf(VictoryManager.class, engine.getVictoryManager());
 	}
 }
