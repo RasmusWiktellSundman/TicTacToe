@@ -10,6 +10,7 @@ import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
  * Hanterar allt relaterat till rutor. Till exempel vart spelare befinner sig och nya drag
  */
 public class TileAndMoveManager {
+	// Information om vilka drag som gjorts på vilken position i koordinat systemet, där tiles[0][0] är högst upp till vänster
 	private char[][] tiles = new char[3][3];
 	// Används för att effektivisera draw. Genom att ha en variabel behöver draw metoden inte loopa igenom hela arrayen vid varje drag.
 	private int totalMoves = 0;
