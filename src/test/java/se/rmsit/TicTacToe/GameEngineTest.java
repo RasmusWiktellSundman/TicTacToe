@@ -114,42 +114,42 @@ public class GameEngineTest {
 		new ResultPanel();
 		engine.addMove(0, 0, 'x');
 		engine.addMove(1, 0, 'x');
-		assertFalse(engine.hasVictory('x'));
+		assertNull(engine.hasVictory('x'));
 
 		engine.addMove(2, 0, 'x');
-		assertTrue(engine.hasVictory('x'));
+		assertNotNull(engine.hasVictory('x'));
 
-		assertFalse(engine.hasVictory('o'));
+		assertNull(engine.hasVictory('o'));
 
 		engine = new GameEngine();
 		engine.addMove(0, 1, 'o');
 		engine.addMove(1, 1, 'o');
 		engine.addMove(2, 1, 'o');
-		assertTrue(engine.hasVictory('o'));
+		assertNotNull(engine.hasVictory('o'));
 
 		engine = new GameEngine();
 		engine.addMove(0, 0, 'o');
 		engine.addMove(0, 1, 'o');
 		engine.addMove(0, 2, 'o');
-		assertTrue(engine.hasVictory('o'));
+		assertNotNull(engine.hasVictory('o'));
 
 		engine = new GameEngine();
 		engine.addMove(0, 0, 'o');
 		engine.addMove(1, 1, 'o');
 		engine.addMove(2, 2, 'o');
-		assertTrue(engine.hasVictory('o'));
+		assertNotNull(engine.hasVictory('o'));
 
 		engine = new GameEngine();
 		engine.addMove(2, 0, 'o');
 		engine.addMove(1, 1, 'o');
 		engine.addMove(0, 2, 'o');
-		assertTrue(engine.hasVictory('o'));
+		assertNotNull(engine.hasVictory('o'));
 
 		engine = new GameEngine();
 		engine.addMove(0, 0, 'o');
 		engine.addMove(1, 1, 'x');
 		engine.addMove(2, 2, 'o');
-		assertFalse(engine.hasVictory('o'));
+		assertNull(engine.hasVictory('o'));
 
 		engine = new GameEngine();
 		engine.addMove(0, 0, 'x');
@@ -161,7 +161,7 @@ public class GameEngineTest {
 		engine.addMove(0, 1, 'o');
 		engine.addMove(1, 1, 'o');
 		engine.addMove(2, 2, 'o');
-		assertFalse(engine.hasVictory('x'));
+		assertNull(engine.hasVictory('x'));
 	}
 
 	@Test

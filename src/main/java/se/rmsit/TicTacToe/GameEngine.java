@@ -34,20 +34,32 @@ public class GameEngine {
 	}
 
 	private void handleVictory() {
-		if(hasVictory('x')) {
-			ResultPanel.addResult('x', "Testing");
+		String victoryMessage;
+		// Kolla om x har vunnit
+		victoryMessage = hasVictory('x');
+		if(victoryMessage != null) {
+			ResultPanel.addResult('x', victoryMessage);
 			return;
 		}
-		if(hasVictory('o')) {
-			ResultPanel.addResult('o', "Testing");
+
+		// Kolla om o har vunnit
+		victoryMessage = hasVictory('o');
+		if(victoryMessage != null) {
+			ResultPanel.addResult('o', victoryMessage);
 			return;
 		}
+
 		if(isDraw()) {
 			ResultPanel.addDraw();
 		}
 	}
 
-	public boolean hasVictory(char player) {
+	/**
+	 * Kollar om spelaren har vunnit och returnerar hur
+	 * @param  player Spelaren att kolla vinst för
+	 * @return Meddelande över hur vinsten skedde, null om ingen har vunnit
+	 */
+	public String hasVictory(char player) {
 		// kolla rader
 		// Loopar igenom varje rad
 		for (int y = 0; y < Game.TILE_LENGTH; y++) {
@@ -58,7 +70,7 @@ public class GameEngine {
 					tilesOccupiedOfPlayer++;
 			}
 			if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
-				return true;
+				return "rad " + (y+1);
 		}
 
 		// kolla kolumner
@@ -70,7 +82,7 @@ public class GameEngine {
 					tilesOccupiedOfPlayer++;
 			}
 			if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
-				return true;
+				return "kolumn " + (x+1);
 		}
 
 		// kolla diagonaler
@@ -81,7 +93,7 @@ public class GameEngine {
 				tilesOccupiedOfPlayer++;
 		}
 		if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
-			return true;
+			return "diagonalen vänster top till häger botten";
 
 		// Steg 2, kolla diagonaler från höger top till vänster botten
 		tilesOccupiedOfPlayer = 0;
@@ -92,9 +104,9 @@ public class GameEngine {
 				tilesOccupiedOfPlayer++;
 		}
 		if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
-			return true;
+			return "diagonalen höger top till vänster botten";
 
-		return false;
+		return null;
 	}
 
 	public boolean isDraw() {
