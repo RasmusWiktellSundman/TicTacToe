@@ -47,6 +47,8 @@ public class GamePanel {
 					char player = engine.getNextPlayer();
 					try {
 						engine.getTileAndMoveManager().moveAndUpdateNextPlayer(finalX, finalY);
+						Game.getMainFrame().updateNextPlayer(engine.getNextPlayer());
+
 						JButton button = (JButton) e.getSource();
 						button.setText(player + "");
 					} catch (TileOccupiedException ex) {

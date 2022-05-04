@@ -16,6 +16,7 @@ public class Game {
 	public static void startGame() {
 		gameEngine.startGame();
 		mainFrame.startGame();
+		mainFrame.updateNextPlayer(gameEngine.getNextPlayer());
 	}
 
 	public static void endGame() {
@@ -34,5 +35,9 @@ public class Game {
 	// getters and setters
 	public static GameEngine getGameEngine() {
 		return gameEngine;
+	}
+
+	public static MainFrame getMainFrame() {
+		return mainFrame;
 	}
 }

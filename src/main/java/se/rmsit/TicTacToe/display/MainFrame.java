@@ -10,6 +10,7 @@ public class MainFrame extends JFrame {
 	private JButton startGameButton;
 	private JLabel labelError;
 	private GamePanel gamePanel;
+	private JLabel labelNextPlayer;
 
 	public MainFrame(String title) {
 		super(title);
@@ -33,6 +34,10 @@ public class MainFrame extends JFrame {
 
 	public void setErrorMessage(String message) {
 		labelError.setText(message);
+	}
+
+	public void updateNextPlayer(char player) {
+		labelNextPlayer.setText("Nästa spelare: " + Character.toUpperCase(player));
 	}
 
 	public void startGame() {
