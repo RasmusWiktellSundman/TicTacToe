@@ -7,10 +7,11 @@ import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
 
 public class GameEngine {
 	// Information om vilka drag som gjorts på vilken position i koordinat systemet, där tiles[0][0] är högst upp till vänster
-	private final char[][] tiles = new char[3][3];
+	private char[][] tiles = new char[3][3];
 	private char nextPlayer = 'x';
 	// Används för att effektivisera draw. Genom att ha en variabel behöver draw metoden inte loopa igenom hela arrayen vid varje drag.
 	private int totalMoves = 0;
+	private boolean running = false;
 
 	public void addMove(int x, int y, char player) throws TileOccupiedException {
 		// Kollar så rätt spelartyp skickas med (x eller o)
@@ -39,6 +40,7 @@ public class GameEngine {
 		victoryMessage = hasVictory('x');
 		if(victoryMessage != null) {
 			ResultPanel.addResult('x', victoryMessage);
+			Game.endGame();
 			return;
 		}
 
@@ -46,11 +48,13 @@ public class GameEngine {
 		victoryMessage = hasVictory('o');
 		if(victoryMessage != null) {
 			ResultPanel.addResult('o', victoryMessage);
+			Game.endGame();
 			return;
 		}
 
 		if(isDraw()) {
 			ResultPanel.addDraw();
+			Game.endGame();
 		}
 	}
 
@@ -131,6 +135,11 @@ public class GameEngine {
 		return player == 'x' || player == 'o';
 	}
 
+	public void resetMoves() {
+		tiles = new char[Game.TILE_LENGTH][Game.TILE_LENGTH];
+		totalMoves = 0;
+	}
+
 	// Getters och setters
 	public char[][] getMoves() {
 		return tiles;
@@ -147,5 +156,17 @@ public class GameEngine {
 	public void moveNextPlayer(int x, int y) throws TileOccupiedException {
 			addMove(x, y, getNextPlayer());
 			updateNextPlayer();
+	}
+
+	public boolean isRunning() {
+		return running;
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
+	public int getTotalMoves() {
+		return totalMoves;
 	}
 }

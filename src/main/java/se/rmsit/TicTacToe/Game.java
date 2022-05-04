@@ -13,6 +13,17 @@ public class Game {
 		gameEngine = new GameEngine();
 	}
 
+	public static void startGame() {
+		gameEngine.setRunning(true);
+		gameEngine.resetMoves();
+		mainFrame.startGame();
+	}
+
+	public static void endGame() {
+		gameEngine.setRunning(false);
+		mainFrame.endGame();
+	}
+
 	public static void setErrorMessage(String message) {
 		mainFrame.setErrorMessage(message);
 	}

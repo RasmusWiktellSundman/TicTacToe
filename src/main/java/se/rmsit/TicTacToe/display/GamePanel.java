@@ -57,6 +57,27 @@ public class GamePanel {
 		}
 	}
 
+	public void restart() {
+		// Sätter alla knappars text till tomt och aktiverar dem
+		for (int y = 0; y < Game.TILE_LENGTH; y++) {
+			for (int x = 0; x < Game.TILE_LENGTH; x++) {
+				JButton button = buttons[y][x];
+				button.setText("");
+				button.setEnabled(true);
+			}
+		}
+	}
+
+	public void end() {
+		// Avaktiverar alla knappar
+		for (int y = 0; y < Game.TILE_LENGTH; y++) {
+			for (int x = 0; x < Game.TILE_LENGTH; x++) {
+				JButton button = buttons[y][x];
+				button.setEnabled(false);
+			}
+		}
+	}
+
 	// Getters and setters
 	public JButton[][] getButtons() {
 		return buttons;

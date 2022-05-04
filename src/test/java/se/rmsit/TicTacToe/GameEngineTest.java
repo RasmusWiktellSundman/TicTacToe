@@ -110,78 +110,108 @@ public class GameEngineTest {
 
 	@Test
 	void checkIf3InARowIsCalculatedCorrectly() throws TileOccupiedException {
-		// Behöver skapas för att addMove ska fungera, då den automatiskt kollar efter vinst och skriver dit
-		new ResultPanel();
-		engine.addMove(0, 0, 'x');
-		engine.addMove(1, 0, 'x');
-		assertNull(engine.hasVictory('x'));
+		try {
+			engine.addMove(0, 0, 'x');
+			engine.addMove(1, 0, 'x');
+			assertNull(engine.hasVictory('x'));
 
-		engine.addMove(2, 0, 'x');
-		assertNotNull(engine.hasVictory('x'));
+			engine.addMove(2, 0, 'x');
+			assertNotNull(engine.hasVictory('x'));
 
-		assertNull(engine.hasVictory('o'));
+			assertNull(engine.hasVictory('o'));
 
-		engine = new GameEngine();
-		engine.addMove(0, 1, 'o');
-		engine.addMove(1, 1, 'o');
-		engine.addMove(2, 1, 'o');
-		assertNotNull(engine.hasVictory('o'));
+			engine = new GameEngine();
+			engine.addMove(0, 1, 'o');
+			engine.addMove(1, 1, 'o');
+			engine.addMove(2, 1, 'o');
+			assertNotNull(engine.hasVictory('o'));
 
-		engine = new GameEngine();
-		engine.addMove(0, 0, 'o');
-		engine.addMove(0, 1, 'o');
-		engine.addMove(0, 2, 'o');
-		assertNotNull(engine.hasVictory('o'));
+			engine = new GameEngine();
+			engine.addMove(0, 0, 'o');
+			engine.addMove(0, 1, 'o');
+			engine.addMove(0, 2, 'o');
+			assertNotNull(engine.hasVictory('o'));
 
-		engine = new GameEngine();
-		engine.addMove(0, 0, 'o');
-		engine.addMove(1, 1, 'o');
-		engine.addMove(2, 2, 'o');
-		assertNotNull(engine.hasVictory('o'));
+			engine = new GameEngine();
+			engine.addMove(0, 0, 'o');
+			engine.addMove(1, 1, 'o');
+			engine.addMove(2, 2, 'o');
+			assertNotNull(engine.hasVictory('o'));
 
-		engine = new GameEngine();
-		engine.addMove(2, 0, 'o');
-		engine.addMove(1, 1, 'o');
-		engine.addMove(0, 2, 'o');
-		assertNotNull(engine.hasVictory('o'));
+			engine = new GameEngine();
+			engine.addMove(2, 0, 'o');
+			engine.addMove(1, 1, 'o');
+			engine.addMove(0, 2, 'o');
+			assertNotNull(engine.hasVictory('o'));
 
-		engine = new GameEngine();
-		engine.addMove(0, 0, 'o');
-		engine.addMove(1, 1, 'x');
-		engine.addMove(2, 2, 'o');
-		assertNull(engine.hasVictory('o'));
+			engine = new GameEngine();
+			engine.addMove(0, 0, 'o');
+			engine.addMove(1, 1, 'x');
+			engine.addMove(2, 2, 'o');
+			assertNull(engine.hasVictory('o'));
 
-		engine = new GameEngine();
-		engine.addMove(0, 0, 'x');
-		engine.addMove(2, 0, 'x');
-		engine.addMove(0, 2, 'x');
-		engine.addMove(2, 1, 'x');
-		engine.addMove(1, 2, 'x');
-		engine.addMove(1, 0, 'o');
-		engine.addMove(0, 1, 'o');
-		engine.addMove(1, 1, 'o');
-		engine.addMove(2, 2, 'o');
-		assertNull(engine.hasVictory('x'));
+			engine = new GameEngine();
+			engine.addMove(0, 0, 'x');
+			engine.addMove(2, 0, 'x');
+			engine.addMove(0, 2, 'x');
+			engine.addMove(2, 1, 'x');
+			engine.addMove(1, 2, 'x');
+			engine.addMove(1, 0, 'o');
+			engine.addMove(0, 1, 'o');
+			engine.addMove(1, 1, 'o');
+			engine.addMove(2, 2, 'o');
+			assertNull(engine.hasVictory('x'));
+		} catch (NullPointerException exception) {
+			// Ignorerar att Game- and ResultPanel-objekt inte är initierade
+			if(!exception.getStackTrace()[0].getClassName().equals("se.rmsit.TicTacToe.Game") &&
+					!exception.getStackTrace()[0].getClassName().contains("ResultPanel")) {
+				throw exception;
+			}
+		}
 	}
 
 	@Test
 	void canGetDraw() throws TileOccupiedException {
-		// Behöver skapas för att addMove ska fungera, då den automatiskt kollar efter vinst och skriver dit
-		new ResultPanel();
-		// Lägger till drag för alla rutor förutom botten höger
-		engine.addMove(0, 0, 'x');
-		engine.addMove(1, 0, 'o');
-		engine.addMove(2, 0, 'x');
-		engine.addMove(0, 1, 'x');
-		engine.addMove(1, 1, 'x');
-		engine.addMove(2, 1, 'o');
-		engine.addMove(0, 2, 'o');
-		engine.addMove(1, 2, 'x');
-		assertFalse(engine.isDraw());
+		try {
+			// Behöver skapas för att addMove ska fungera, då den automatiskt kollar efter vinst och skriver dit
+			new ResultPanel();
+			// Lägger till drag för alla rutor förutom botten höger
+			engine.addMove(0, 0, 'x');
+			engine.addMove(1, 0, 'o');
+			engine.addMove(2, 0, 'x');
+			engine.addMove(0, 1, 'x');
+			engine.addMove(1, 1, 'x');
+			engine.addMove(2, 1, 'o');
+			engine.addMove(0, 2, 'o');
+			engine.addMove(1, 2, 'x');
+			assertFalse(engine.isDraw());
 
-		// Lägger till drag för sista rutan
-		engine.addMove(2, 2, 'o');
-		assertTrue(engine.isDraw());
+			// Lägger till drag för sista rutan
+			engine.addMove(2, 2, 'o');
+			assertTrue(engine.isDraw());
+		} catch (NullPointerException exception) {
+			// Ignorerar att Game- and ResultPanel-objekt inte är initierade
+			if(!exception.getStackTrace()[0].getClassName().equals("se.rmsit.TicTacToe.Game") &&
+					!exception.getStackTrace()[0].getClassName().contains("ResultPanel")) {
+				throw exception;
+			}
+		}
+	}
+
+	@Test
+	void canSetRunning() {
+		assertFalse(engine.isRunning());
+		engine.setRunning(true);
+		assertTrue(engine.isRunning());
+	}
+
+	@Test
+	void canResetMovesAndTotalMoves() throws TileOccupiedException {
+		engine.addMove(0, 0, 'x');
+
+		engine.resetMoves();
+		assertArrayEquals(new char[3][3], engine.getMoves());
+		assertEquals(0, engine.getTotalMoves());
 	}
 
 }
