@@ -1,40 +1,19 @@
 package se.rmsit.TicTacToe;
 
 import se.rmsit.TicTacToe.display.ResultPanel;
-import se.rmsit.TicTacToe.exceptions.InvalidCoordinatesException;
-import se.rmsit.TicTacToe.exceptions.InvalidPlayerTypeException;
-import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
+import se.rmsit.TicTacToe.managers.TileAndMoveManager;
 
 public class GameEngine {
 	// Information om vilka drag som gjorts på vilken position i koordinat systemet, där tiles[0][0] är högst upp till vänster
-	private char[][] tiles = new char[3][3];
 	private char nextPlayer = 'x';
-	// Används för att effektivisera draw. Genom att ha en variabel behöver draw metoden inte loopa igenom hela arrayen vid varje drag.
-	private int totalMoves = 0;
 	private boolean running = false;
+	private TileAndMoveManager tileMoveManager;
 
-	public void addMove(int x, int y, char player) throws TileOccupiedException {
-		// Kollar så rätt spelartyp skickas med (x eller o)
-		if(!validatePlayer(player)) {
-			throw new InvalidPlayerTypeException();
-		}
-		if(!validCoordinates(x, y)) {
-			throw new InvalidCoordinatesException();
-		}
-		if(isSquareOccupied(x, y)) {
-			throw new TileOccupiedException();
-		}
-		tiles[y][x] = player;
-		totalMoves++;
-
-		handleVictory();
+	public GameEngine() {
+		this.tileMoveManager = new TileAndMoveManager(this);
 	}
 
-	public char getPlayerOnTile(int x, int y) {
-		return tiles[y][x];
-	}
-
-	private void handleVictory() {
+	public void handleVictory() {
 		String victoryMessage;
 		// Kolla om x har vunnit
 		victoryMessage = hasVictory('x');
@@ -70,7 +49,7 @@ public class GameEngine {
 			int tilesOccupiedOfPlayer = 0;
 			// Loopar igenom alla rutor längst en rad och kollar så alla ägs av spelaren
 			for (int x = 0; x < Game.TILE_LENGTH; x++) {
-				if(getPlayerOnTile(x, y) == player)
+				if(tileMoveManager.getPlayerOnTile(x, y) == player)
 					tilesOccupiedOfPlayer++;
 			}
 			if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
@@ -82,7 +61,7 @@ public class GameEngine {
 		for (int x = 0; x < Game.TILE_LENGTH; x++) {
 			int tilesOccupiedOfPlayer = 0;
 			for (int y = 0; y < Game.TILE_LENGTH; y++) {
-				if(getPlayerOnTile(x, y) == player)
+				if(tileMoveManager.getPlayerOnTile(x, y) == player)
 					tilesOccupiedOfPlayer++;
 			}
 			if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
@@ -93,7 +72,7 @@ public class GameEngine {
 		// Steg 1, kolla diagonaler från vänster top till häger botten
 		int tilesOccupiedOfPlayer = 0;
 		for (int coordinate = 0; coordinate < Game.TILE_LENGTH; coordinate++) {
-			if(getPlayerOnTile(coordinate, coordinate) == player)
+			if(tileMoveManager.getPlayerOnTile(coordinate, coordinate) == player)
 				tilesOccupiedOfPlayer++;
 		}
 		if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
@@ -104,7 +83,7 @@ public class GameEngine {
 		for (int coordinate = 2; coordinate >= 0; coordinate--) {
 			// När y är som mest måste y vara som minst, när y är ett mindre är x ett mer.
 			// Tar minus 1 då Game.TILE_LENGTH är ett antal (där 0 inte representerar första)
-			if(getPlayerOnTile((Game.TILE_LENGTH-1)-coordinate, coordinate) == player)
+			if(tileMoveManager.getPlayerOnTile((Game.TILE_LENGTH-1)-coordinate, coordinate) == player)
 				tilesOccupiedOfPlayer++;
 		}
 		if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
@@ -114,48 +93,21 @@ public class GameEngine {
 	}
 
 	public boolean isDraw() {
-		return totalMoves == Game.TILE_LENGTH * Game.TILE_LENGTH;
+		return tileMoveManager.getTotalMoves() == Game.TILE_LENGTH * Game.TILE_LENGTH;
 	}
 
-	private boolean validCoordinates(int x, int y) {
-		if(x < 0 || x > Game.TILE_LENGTH - 1)
-			return false;
-		if(y < 0 || y > Game.TILE_LENGTH - 1)
-			return false;
-		return true;
-	}
-
-	private boolean isSquareOccupied(int x, int y) {
-		// Kollar om char-arrayen innehåller chars default värde. Om den inte gör det, är den platsen upptagen
-		return tiles[y][x] != '\u0000';
-	}
-
-	private boolean validatePlayer(char player) {
+	public boolean validatePlayer(char player) {
 		// Endast x och o är giltiga alternativ.
 		return player == 'x' || player == 'o';
 	}
 
-	public void resetMoves() {
-		tiles = new char[Game.TILE_LENGTH][Game.TILE_LENGTH];
-		totalMoves = 0;
-	}
-
 	// Getters och setters
-	public char[][] getMoves() {
-		return tiles;
-	}
-
 	public char getNextPlayer() {
 		return nextPlayer;
 	}
 
 	public void updateNextPlayer() {
 		nextPlayer = (nextPlayer == 'x' ? 'o' : 'x');
-	}
-
-	public void moveNextPlayer(int x, int y) throws TileOccupiedException {
-			addMove(x, y, getNextPlayer());
-			updateNextPlayer();
 	}
 
 	public boolean isRunning() {
@@ -166,7 +118,7 @@ public class GameEngine {
 		this.running = running;
 	}
 
-	public int getTotalMoves() {
-		return totalMoves;
+	public TileAndMoveManager getTileAndMoveManager() {
+		return tileMoveManager;
 	}
 }

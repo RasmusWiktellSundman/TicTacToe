@@ -46,7 +46,7 @@ public class GamePanel {
 					// Sparar vilken spelare som gjorde draget, för att sätta rutan till den spelaren, ifall draget är giltigt.
 					char player = engine.getNextPlayer();
 					try {
-						engine.moveNextPlayer(finalX, finalY);
+						engine.getTileAndMoveManager().moveAndUpdateNextPlayer(finalX, finalY);
 						JButton button = (JButton) e.getSource();
 						button.setText(player + "");
 					} catch (TileOccupiedException ex) {
