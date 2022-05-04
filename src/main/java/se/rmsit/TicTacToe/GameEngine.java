@@ -9,6 +9,8 @@ public class GameEngine {
 	// Information om vilka drag som gjorts på vilken position i koordinat systemet, där tiles[0][0] är högst upp till vänster
 	private final char[][] tiles = new char[3][3];
 	private char nextPlayer = 'x';
+	// Används för att effektivisera draw. Genom att ha en variabel behöver draw metoden inte loopa igenom hela arrayen vid varje drag.
+	private int totalMoves = 0;
 
 	public void addMove(int x, int y, char player) throws TileOccupiedException {
 		// Kollar så rätt spelartyp skickas med (x eller o)
@@ -22,6 +24,7 @@ public class GameEngine {
 			throw new TileOccupiedException();
 		}
 		tiles[y][x] = player;
+		totalMoves++;
 
 		handleVictory();
 	}
@@ -33,11 +36,15 @@ public class GameEngine {
 	private void handleVictory() {
 		if(hasVictory('x')) {
 			ResultPanel.addResult('x', "Testing");
+			return;
 		}
 		if(hasVictory('o')) {
 			ResultPanel.addResult('o', "Testing");
+			return;
 		}
-		// todo: check for draw
+		if(isDraw()) {
+			ResultPanel.addDraw();
+		}
 	}
 
 	public boolean hasVictory(char player) {
@@ -88,6 +95,10 @@ public class GameEngine {
 			return true;
 
 		return false;
+	}
+
+	public boolean isDraw() {
+		return totalMoves == Game.TILE_LENGTH * Game.TILE_LENGTH;
 	}
 
 	private boolean validCoordinates(int x, int y) {

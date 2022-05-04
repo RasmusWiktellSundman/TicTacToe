@@ -35,4 +35,9 @@ public class ResultPanel {
 	public static int getOVictories() {
 		return instance.oVictories;
 	}
+
+	public static void addDraw() {
+		instance.txtAreaResult.append("Oavgjort\n");
+		instance.txtAreaResult.append(getScoreMessage() + "\n");
+	}
 }

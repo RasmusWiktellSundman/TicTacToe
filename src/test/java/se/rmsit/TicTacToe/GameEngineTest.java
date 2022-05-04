@@ -1,12 +1,13 @@
 package se.rmsit.TicTacToe;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import se.rmsit.TicTacToe.display.ResultPanel;
 import se.rmsit.TicTacToe.exceptions.InvalidCoordinatesException;
 import se.rmsit.TicTacToe.exceptions.InvalidPlayerTypeException;
 import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameEngineTest {
 	private GameEngine engine;
@@ -109,6 +110,8 @@ public class GameEngineTest {
 
 	@Test
 	void checkIf3InARowIsCalculatedCorrectly() throws TileOccupiedException {
+		// Behöver skapas för att addMove ska fungera, då den automatiskt kollar efter vinst och skriver dit
+		new ResultPanel();
 		engine.addMove(0, 0, 'x');
 		engine.addMove(1, 0, 'x');
 		assertFalse(engine.hasVictory('x'));
@@ -159,6 +162,26 @@ public class GameEngineTest {
 		engine.addMove(1, 1, 'o');
 		engine.addMove(2, 2, 'o');
 		assertFalse(engine.hasVictory('x'));
+	}
+
+	@Test
+	void canGetDraw() throws TileOccupiedException {
+		// Behöver skapas för att addMove ska fungera, då den automatiskt kollar efter vinst och skriver dit
+		new ResultPanel();
+		// Lägger till drag för alla rutor förutom botten höger
+		engine.addMove(0, 0, 'x');
+		engine.addMove(1, 0, 'o');
+		engine.addMove(2, 0, 'x');
+		engine.addMove(0, 1, 'x');
+		engine.addMove(1, 1, 'x');
+		engine.addMove(2, 1, 'o');
+		engine.addMove(0, 2, 'o');
+		engine.addMove(1, 2, 'x');
+		assertFalse(engine.isDraw());
+
+		// Lägger till drag för sista rutan
+		engine.addMove(2, 2, 'o');
+		assertTrue(engine.isDraw());
 	}
 
 }
