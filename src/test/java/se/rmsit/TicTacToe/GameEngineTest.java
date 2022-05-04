@@ -43,4 +43,16 @@ public class GameEngineTest {
 	void canGetVictoryManager() {
 		assertInstanceOf(VictoryManager.class, engine.getVictoryManager());
 	}
+
+	@Test
+	void canGetPlayerWhoStarted() {
+		assertEquals('x', engine.getPlayerWhoStarted());
+	}
+
+	@Test
+	void canUpdatePlayerWhoStarted() {
+		assertEquals('x', engine.getPlayerWhoStarted());
+		engine.updatePlayerWhoStarted();
+		assertEquals('o', engine.getPlayerWhoStarted());
+	}
 }

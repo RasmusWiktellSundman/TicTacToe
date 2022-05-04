@@ -14,8 +14,7 @@ public class Game {
 	}
 
 	public static void startGame() {
-		gameEngine.setRunning(true);
-		gameEngine.getTileAndMoveManager().resetMoves();
+		gameEngine.startGame();
 		mainFrame.startGame();
 	}
 

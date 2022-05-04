@@ -5,6 +5,8 @@ import se.rmsit.TicTacToe.managers.VictoryManager;
 
 public class GameEngine {
 	private char nextPlayer = 'x';
+	// Spelaren som startade rundan (uppdateras vid ny runda)
+	private char playerWhoStarted = 'x';
 	private boolean running = false;
 	private TileAndMoveManager tileMoveManager;
 	private VictoryManager victoryManager;
@@ -12,6 +14,13 @@ public class GameEngine {
 	public GameEngine() {
 		this.tileMoveManager = new TileAndMoveManager(this);
 		this.victoryManager = new VictoryManager(this.tileMoveManager);
+	}
+
+	public void startGame() {
+		updatePlayerWhoStarted();
+		nextPlayer = playerWhoStarted;
+		setRunning(true);
+		getTileAndMoveManager().resetMoves();
 	}
 
 	public boolean validatePlayer(char player) {
@@ -24,8 +33,29 @@ public class GameEngine {
 		return nextPlayer;
 	}
 
+	/**
+	 * Ändrar vem som är nästa spelare, till den andra spelaren
+	 * @see #getOpposingPlayer
+	 */
 	public void updateNextPlayer() {
-		nextPlayer = (nextPlayer == 'x' ? 'o' : 'x');
+		nextPlayer = getOpposingPlayer(nextPlayer);
+	}
+
+	/**
+	 * Ändrar startspelare till den andra spelaren
+	 * @see #getOpposingPlayer
+	 */
+	public void updatePlayerWhoStarted() {
+		playerWhoStarted = getOpposingPlayer(playerWhoStarted);
+	}
+
+	/**
+	 * Returnerar den andra spelaren, t.ex anges x returneras o
+	 * @param player Spelaren du vill utgå ifrån
+	 * @return players motståndare
+	 */
+	public char getOpposingPlayer(char player) {
+		return player == 'x' ? 'o' : 'x';
 	}
 
 	public boolean isRunning() {
@@ -42,5 +72,9 @@ public class GameEngine {
 
 	public VictoryManager getVictoryManager() {
 		return victoryManager;
+	}
+
+	public char getPlayerWhoStarted() {
+		return playerWhoStarted;
 	}
 }
