@@ -38,7 +38,7 @@ public class TileAndMoveManager {
 		tiles[y][x] = player;
 		totalMoves++;
 
-		gameEngine.handleVictory();
+		gameEngine.getVictoryManager().handleVictory();
 	}
 
 	public char getPlayerOnTile(int x, int y) {
