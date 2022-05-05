@@ -73,7 +73,7 @@ public class MainFrame extends JFrame {
 	 */
 	private void $$$setupUI$$$() {
 		panelMain = new JPanel();
-		panelMain.setLayout(new GridLayoutManager(6, 8, new Insets(0, 0, 0, 0), -1, -1));
+		panelMain.setLayout(new GridLayoutManager(8, 8, new Insets(0, 0, 0, 0), -1, -1));
 		final JLabel label1 = new JLabel();
 		label1.setText("Lets play some Tic Tac Toe");
 		panelMain.add(label1, new GridConstraints(1, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -87,13 +87,7 @@ public class MainFrame extends JFrame {
 		startGameButton.setText("Start Game");
 		panelMain.add(startGameButton, new GridConstraints(1, 5, 2, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final Spacer spacer4 = new Spacer();
-		panelMain.add(spacer4, new GridConstraints(5, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-		labelError = new JLabel();
-		Font labelErrorFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelError.getFont());
-		if (labelErrorFont != null) labelError.setFont(labelErrorFont);
-		labelError.setForeground(new Color(-4518641));
-		labelError.setText("");
-		panelMain.add(labelError, new GridConstraints(3, 1, 2, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		panelMain.add(spacer4, new GridConstraints(7, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
 		labelNextPlayer = new JLabel();
 		labelNextPlayer.setText("Nästa spelare: -");
 		panelMain.add(labelNextPlayer, new GridConstraints(2, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -101,6 +95,12 @@ public class MainFrame extends JFrame {
 		panelMain.add(gamePanel, new GridConstraints(3, 2, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 		final ResultPanel nestedForm1 = new ResultPanel();
 		panelMain.add(nestedForm1.$$$getRootComponent$$$(), new GridConstraints(3, 4, 2, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(170, 178), new Dimension(170, 178), null, 0, false));
+		labelError = new JLabel();
+		Font labelErrorFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelError.getFont());
+		if (labelErrorFont != null) labelError.setFont(labelErrorFont);
+		labelError.setForeground(new Color(-4518641));
+		labelError.setText("");
+		panelMain.add(labelError, new GridConstraints(5, 2, 2, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 	}
 
 	/**
