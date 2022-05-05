@@ -10,10 +10,12 @@ import java.awt.*;
 public class GamePanel {
 	private JPanel panelGame;
 	JButton[][] buttons = new JButton[Game.TILE_LENGTH][Game.TILE_LENGTH];
+	private Cursor blockCursor;
 
 	public GamePanel() {
 		populateButtonsArray();
 		addButtonListeners();
+		createBlockCursor();
 	}
 
 	private void populateButtonsArray() {
@@ -50,6 +52,7 @@ public class GamePanel {
 						Game.getMainFrame().updateNextPlayer(engine.getNextPlayer());
 
 						JButton button = (JButton) e.getSource();
+						button.setCursor(blockCursor);
 						button.setText(Character.toUpperCase(player) + "");
 					} catch (TileOccupiedException ex) {
 						Game.setErrorMessage("Rutan är upptagen, välj en annan!");
@@ -76,8 +79,18 @@ public class GamePanel {
 			for (int x = 0; x < Game.TILE_LENGTH; x++) {
 				JButton button = buttons[y][x];
 				button.setEnabled(false);
+				button.setCursor(blockCursor);
 			}
 		}
+	}
+
+	private void createBlockCursor() {
+		// Används för att skapa awt Image-objekt och muspekare
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		// Initierar Image-objektet med bilden från resources mappen
+		Image image = toolkit.getImage(getClass().getResource("/images/block-cursor.png"));
+		// Skapar ny muspekare, använder 16, 16 för att centrera den.
+		blockCursor = toolkit.createCustomCursor(image, new Point(16,16), "block-cursor");
 	}
 
 	// Getters and setters
