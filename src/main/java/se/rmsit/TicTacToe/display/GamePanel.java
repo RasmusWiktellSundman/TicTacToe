@@ -53,7 +53,11 @@ public class GamePanel {
 
 						JButton button = (JButton) e.getSource();
 						button.setCursor(blockCursor);
-						button.setText(Character.toUpperCase(player) + "");
+
+						if(player == 'x')
+							setX(button);
+						else
+							setO(button);
 					} catch (TileOccupiedException ex) {
 						Game.setErrorMessage("Rutan är upptagen, välj en annan!");
 					}
@@ -68,7 +72,9 @@ public class GamePanel {
 			for (int x = 0; x < Game.TILE_LENGTH; x++) {
 				JButton button = buttons[y][x];
 				button.setText("");
+				button.setBackground(Color.WHITE);
 				button.setEnabled(true);
+				button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 		}
 	}
@@ -82,6 +88,18 @@ public class GamePanel {
 				button.setCursor(blockCursor);
 			}
 		}
+	}
+
+	private void setX(JButton button) {
+		button.setText("X");
+		button.setBackground(Color.RED);
+		button.setForeground(Color.WHITE);
+	}
+
+	private void setO(JButton button) {
+		button.setText("O");
+		button.setBackground(Color.BLUE);
+		button.setForeground(Color.WHITE);
 	}
 
 	private void createBlockCursor() {
