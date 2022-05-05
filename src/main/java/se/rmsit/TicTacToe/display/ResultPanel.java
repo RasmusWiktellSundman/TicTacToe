@@ -23,7 +23,7 @@ public class ResultPanel {
 			instance.xVictories++;
 		else if (player == 'o')
 			instance.oVictories++;
-		instance.txtAreaResult.append("Player " + Character.toUpperCase(player) + " win on " + message + "\n");
+		instance.txtAreaResult.append("Spelare " + Character.toUpperCase(player) + " vann på " + message + "\n");
 		instance.txtAreaResult.append(getScoreMessage() + "\n");
 	}
 
