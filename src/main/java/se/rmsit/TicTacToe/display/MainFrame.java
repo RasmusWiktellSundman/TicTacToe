@@ -94,13 +94,13 @@ public class MainFrame extends JFrame {
 		gamePanel = new GamePanel();
 		panelMain.add(gamePanel, new GridConstraints(3, 2, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 		final ResultPanel nestedForm1 = new ResultPanel();
-		panelMain.add(nestedForm1.$$$getRootComponent$$$(), new GridConstraints(3, 4, 2, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(170, 178), new Dimension(170, 178), null, 0, false));
+		panelMain.add(nestedForm1.$$$getRootComponent$$$(), new GridConstraints(3, 4, 2, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(310, 178), new Dimension(310, 178), null, 0, false));
 		labelError = new JLabel();
 		Font labelErrorFont = this.$$$getFont$$$(null, Font.BOLD, -1, labelError.getFont());
 		if (labelErrorFont != null) labelError.setFont(labelErrorFont);
 		labelError.setForeground(new Color(-4518641));
-		labelError.setText("");
-		panelMain.add(labelError, new GridConstraints(5, 2, 2, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		labelError.setText(" ");
+		panelMain.add(labelError, new GridConstraints(5, 2, 2, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 	}
 
 	/**
@@ -131,4 +131,5 @@ public class MainFrame extends JFrame {
 	public JComponent $$$getRootComponent$$$() {
 		return panelMain;
 	}
+
 }

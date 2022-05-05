@@ -17,6 +17,7 @@ public class Game {
 		gameEngine.startGame();
 		mainFrame.startGame();
 		mainFrame.updateNextPlayer(gameEngine.getNextPlayer());
+		removeErrorMessage();
 	}
 
 	public static void endGame() {
@@ -29,7 +30,7 @@ public class Game {
 	}
 
 	public static void removeErrorMessage() {
-		mainFrame.setErrorMessage("");
+		mainFrame.setErrorMessage(" ");
 	}
 
 	// getters and setters
