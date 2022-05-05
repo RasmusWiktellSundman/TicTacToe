@@ -35,8 +35,8 @@ public class GamePanel extends JPanel {
 			button.setMinimumSize(new Dimension(50, 50));
 			// Tar bort kant runt text
 			button.setFocusPainted(false);
-			button.setEnabled(false);
 			button.setName("tile" + i);
+			button.setBackground(Color.GRAY);
 
 			// Lägg till i panelen
 			this.add(button);
@@ -61,6 +61,10 @@ public class GamePanel extends JPanel {
 				// Lägger till lyssnare för knapptryck
 				buttons[y][x].addActionListener(e -> {
 					GameEngine engine = Game.getGameEngine();
+					if(!engine.isRunning()) {
+						Game.setErrorMessage("Du måste starta spelet.");
+						return;
+					}
 					// Tar bort gamla felmeddelanden
 					Game.removeErrorMessage();
 					// Sparar vilken spelare som gjorde draget, för att sätta rutan till den spelaren, ifall draget är giltigt.
@@ -91,7 +95,6 @@ public class GamePanel extends JPanel {
 				JButton button = buttons[y][x];
 				button.setText("");
 				button.setBackground(Color.WHITE);
-				button.setEnabled(true);
 				button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 		}
@@ -102,8 +105,9 @@ public class GamePanel extends JPanel {
 		for (int y = 0; y < Game.TILE_LENGTH; y++) {
 			for (int x = 0; x < Game.TILE_LENGTH; x++) {
 				JButton button = buttons[y][x];
-				button.setEnabled(false);
 				button.setCursor(blockCursor);
+				// Gör bakgrunden mörkare
+				button.setBackground(button.getBackground().darker());
 			}
 		}
 	}
