@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
 	public MainFrame(String title) {
 		super(title);
 		this.setContentPane(this.panelMain);
-		this.setSize(500, 300);
+		this.setSize(600, 300);
 		// center window
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
