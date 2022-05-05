@@ -7,29 +7,47 @@ import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel {
-	private JPanel panelGame;
+public class GamePanel extends JPanel {
 	JButton[][] buttons = new JButton[Game.TILE_LENGTH][Game.TILE_LENGTH];
 	private Cursor blockCursor;
 
 	public GamePanel() {
-		populateButtonsArray();
+		setupLayout();
+		setupButtons();
 		addButtonListeners();
 		createBlockCursor();
 	}
 
-	private void populateButtonsArray() {
+	private void setupLayout() {
+		GridLayout layout = new GridLayout(Game.TILE_LENGTH, Game.TILE_LENGTH);
+		// Sätter mellanrum mellan knapparna
+		layout.setHgap(10);
+		layout.setVgap(10);
+		this.setLayout(layout);
+	}
+
+	private void setupButtons() {
 		int x = 0;
 		int y = 0;
-		for (Component component : panelGame.getComponents()) {
-			if(component.getName() != null && component.getName().contains("tile")) {
-				buttons[y][x] = (JButton) component;
-				x++;
-				// Nollställ x när vi kommer till slutet av en rad och öka y
-				if(x > Game.TILE_LENGTH - 1) {
-					x = 0;
-					y++;
-				}
+		for (int i = 0; i < Game.TILE_LENGTH * Game.TILE_LENGTH; i++) {
+			JButton button = new JButton();
+			// designa knapp
+			button.setMinimumSize(new Dimension(50, 50));
+			// Tar bort kant runt text
+			button.setFocusPainted(false);
+			button.setEnabled(false);
+			button.setName("tile" + i);
+
+			// Lägg till i panelen
+			this.add(button);
+
+			// Lägg in i buttons array
+			buttons[y][x] = button;
+			x++;
+			// Nollställ x när vi kommer till slutet av en rad och öka y
+			if(x > Game.TILE_LENGTH - 1) {
+				x = 0;
+				y++;
 			}
 		}
 	}
