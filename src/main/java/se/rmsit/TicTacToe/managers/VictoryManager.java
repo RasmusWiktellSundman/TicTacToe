@@ -10,6 +10,10 @@ public class VictoryManager {
 		this.tileMoveManager = tileAndMoveManager;
 	}
 
+	/**
+	 * Kollar om en vinst har skett. Om en vinst har skett uppdateras {@link ResultPanel} och spelet avslutas
+	 * @see #hasVictory(char)
+	 */
 	public void handleVictory() {
 		String victoryMessage;
 		// Kolla om x har vunnit
@@ -35,7 +39,7 @@ public class VictoryManager {
 	}
 
 	/**
-	 * Kollar om spelaren har vunnit och returnerar hur
+	 * Kollar om spelaren har vunnit och returnerar hur spelaren vann
 	 * @param  player Spelaren att kolla vinst för
 	 * @return Meddelande över hur vinsten skedde, null om ingen har vunnit
 	 */

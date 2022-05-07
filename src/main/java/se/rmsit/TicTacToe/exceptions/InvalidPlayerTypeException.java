@@ -1,4 +1,4 @@
 package se.rmsit.TicTacToe.exceptions;
 
-// Anger felaktig spelartyp vid drag (annat än x och o)
+// Anger felaktig spelartyp vid drag (endast x och o är giltiga)
 public class InvalidPlayerTypeException extends RuntimeException {}

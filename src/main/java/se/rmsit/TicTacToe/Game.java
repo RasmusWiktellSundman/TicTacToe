@@ -3,7 +3,7 @@ package se.rmsit.TicTacToe;
 import se.rmsit.TicTacToe.display.MainFrame;
 
 public class Game {
-	// Antal rutor på en rad
+	/** Antal rutor på en rad */
 	public static final int TILE_LENGTH = 3;
 	private static MainFrame mainFrame;
 	private static GameEngine gameEngine;
@@ -30,6 +30,7 @@ public class Game {
 	}
 
 	public static void removeErrorMessage() {
+		// Sätter till mellanrum för att label inte ska försvinna och ändra positionering av andra element i designen
 		mainFrame.setErrorMessage(" ");
 	}
 

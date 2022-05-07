@@ -20,13 +20,18 @@ public class MainFrame extends JFrame {
 	private JLabel labelNextPlayer;
 
 	public MainFrame(String title) {
+		// Initiera JFrame
 		super(title);
+		// Sätt innehållet för JFrame
 		this.setContentPane(this.panelMain);
+		// Ändrar JFrames standard storlek
 		this.setSize(600, 300);
 		// center window
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
+		// Stänger av programmet när användaren stänger programmet. Annars kör den i bakgrunden.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// Visar JFramen
+		this.setVisible(true);
 
 		addListeners();
 	}

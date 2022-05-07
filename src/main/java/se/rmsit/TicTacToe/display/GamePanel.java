@@ -23,6 +23,7 @@ public class GamePanel extends JPanel {
 		// Sätter mellanrum mellan knapparna
 		layout.setHgap(10);
 		layout.setVgap(10);
+		// Sätter panelens layout till att använda GridLayout
 		this.setLayout(layout);
 	}
 
@@ -33,7 +34,7 @@ public class GamePanel extends JPanel {
 			JButton button = new JButton();
 			// designa knapp
 			button.setMinimumSize(new Dimension(50, 50));
-			// Tar bort kant runt text
+			// Tar bort kant runt text vid focus
 			button.setFocusPainted(false);
 			button.setName("tile" + i);
 			button.setBackground(Color.GRAY);
@@ -59,6 +60,7 @@ public class GamePanel extends JPanel {
 				int finalX = x;
 				int finalY = y;
 				// Lägger till lyssnare för knapptryck
+				// När en spelare trycker på en knapp hanteras draget
 				buttons[y][x].addActionListener(e -> {
 					GameEngine engine = Game.getGameEngine();
 					if(!engine.isRunning()) {
@@ -89,7 +91,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public void restart() {
-		// Sätter alla knappars text till tomt och aktiverar dem
+		// Återställer knappar till ursprungsläge (tar bort X och O, med mera)
 		for (int y = 0; y < Game.TILE_LENGTH; y++) {
 			for (int x = 0; x < Game.TILE_LENGTH; x++) {
 				JButton button = buttons[y][x];
@@ -101,7 +103,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public void end() {
-		// Avaktiverar alla knappar
+		// Gör knapparnas bakgrundsfärg mörkare och ändrar muspekare.
 		for (int y = 0; y < Game.TILE_LENGTH; y++) {
 			for (int x = 0; x < Game.TILE_LENGTH; x++) {
 				JButton button = buttons[y][x];
@@ -124,6 +126,9 @@ public class GamePanel extends JPanel {
 		button.setForeground(Color.WHITE);
 	}
 
+	/**
+	 * Skapar en {@link Cursor} med en blockeringssymbol som motiv.
+	 */
 	private void createBlockCursor() {
 		// Används för att skapa awt Image-objekt och muspekare
 		Toolkit toolkit = Toolkit.getDefaultToolkit();

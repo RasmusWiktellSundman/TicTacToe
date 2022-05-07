@@ -23,14 +23,13 @@ public class GameEngine {
 		getTileAndMoveManager().resetMoves();
 	}
 
+	/**
+	 * Kollar om den angivna spelaren är giltig. Endast x och o är giltiga alternativ
+	 * @param player Spelaren att kolla
+	 * @return Om spelaren är giltig
+	 */
 	public boolean validatePlayer(char player) {
-		// Endast x och o är giltiga alternativ.
 		return player == 'x' || player == 'o';
-	}
-
-	// Getters och setters
-	public char getNextPlayer() {
-		return nextPlayer;
 	}
 
 	/**
@@ -51,11 +50,16 @@ public class GameEngine {
 
 	/**
 	 * Returnerar den andra spelaren, t.ex anges x returneras o
-	 * @param player Spelaren du vill utgå ifrån
+	 * @param player Spelaren du vill ha motståndare för
 	 * @return players motståndare
 	 */
 	public char getOpposingPlayer(char player) {
 		return player == 'x' ? 'o' : 'x';
+	}
+
+	// Getters och setters
+	public char getNextPlayer() {
+		return nextPlayer;
 	}
 
 	public boolean isRunning() {

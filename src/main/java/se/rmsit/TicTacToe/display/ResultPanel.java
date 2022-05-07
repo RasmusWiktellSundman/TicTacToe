@@ -15,9 +15,15 @@ public class ResultPanel {
 	private int oVictories = 0;
 
 	public ResultPanel() {
+		// Vid skapande av ny instans skrivs instance över för att förenkla testande.
 		instance = this;
 	}
 
+	/**
+	 * Uppdaterar spelarens antal vinster och skriver ut resultatet i textrutan
+	 * @param player Spelaren som vann
+	 * @param message Hur spelaren vann
+	 */
 	public static void addResult(char player, String message) {
 		if (player == 'x')
 			instance.xVictories++;
@@ -31,6 +37,11 @@ public class ResultPanel {
 		return "Score(X:O) " + getXVictories() + ":" + getOVictories();
 	}
 
+	public static void addDraw() {
+		instance.txtAreaResult.append("Oavgjort\n");
+		instance.txtAreaResult.append(getScoreMessage() + "\n");
+	}
+
 	// getters and setters
 	public static int getXVictories() {
 		return instance.xVictories;
@@ -38,11 +49,6 @@ public class ResultPanel {
 
 	public static int getOVictories() {
 		return instance.oVictories;
-	}
-
-	public static void addDraw() {
-		instance.txtAreaResult.append("Oavgjort\n");
-		instance.txtAreaResult.append(getScoreMessage() + "\n");
 	}
 
 	{
