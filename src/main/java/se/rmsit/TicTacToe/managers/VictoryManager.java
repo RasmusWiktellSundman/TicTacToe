@@ -77,7 +77,7 @@ public class VictoryManager {
 				tilesOccupiedOfPlayer++;
 		}
 		if(tilesOccupiedOfPlayer == Game.TILE_LENGTH)
-			return "diagonalen vänster top till häger botten";
+			return "diagonalen vänster top till höger botten";
 
 		// Steg 2, kolla diagonaler från höger top till vänster botten
 		tilesOccupiedOfPlayer = 0;
