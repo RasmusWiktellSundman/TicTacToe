@@ -59,6 +59,7 @@ public class VictoryManager {
 
 		// kolla kolumner
 		// Samma fast loopar igenom kolumner
+		// Bröt inte ut koden till en egen metod då den blev mindre läsbar och optimiserad än att duplicera.
 		for (int x = 0; x < Game.TILE_LENGTH; x++) {
 			int tilesOccupiedOfPlayer = 0;
 			for (int y = 0; y < Game.TILE_LENGTH; y++) {
