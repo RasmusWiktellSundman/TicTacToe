@@ -10,6 +10,7 @@ import java.awt.*;
 public class GamePanel extends JPanel {
 	JButton[][] buttons = new JButton[Game.TILE_LENGTH][Game.TILE_LENGTH];
 	private Cursor blockCursor;
+	private final GameEngine engine = Game.getGameEngine();
 
 	public GamePanel() {
 		setupLayout();
@@ -62,7 +63,6 @@ public class GamePanel extends JPanel {
 				// Lägger till lyssnare för knapptryck
 				// När en spelare trycker på en knapp hanteras draget
 				buttons[y][x].addActionListener(e -> {
-					GameEngine engine = Game.getGameEngine();
 					if(!engine.isRunning()) {
 						Game.getMainFrame().setErrorMessage("Du måste starta spelet.");
 						return;
@@ -73,13 +73,13 @@ public class GamePanel extends JPanel {
 
 					// Sparar vilken spelare som gjorde draget, för att sätta rutan till den spelaren, ifall draget är giltigt.
 					char player = engine.getNextPlayer();
+
 					try {
 						engine.getTileAndMoveManager().moveAndUpdateNextPlayer(finalX, finalY);
+						// Uppdaterar vems tur det är grafiskt
 						Game.getMainFrame().setNextPlayer(engine.getNextPlayer());
 
 						JButton button = (JButton) e.getSource();
-						button.setCursor(blockCursor);
-
 						if(player == 'x')
 							setX(button);
 						else
@@ -120,12 +120,14 @@ public class GamePanel extends JPanel {
 		button.setText("X");
 		button.setBackground(Color.RED);
 		button.setForeground(Color.WHITE);
+		button.setCursor(blockCursor);
 	}
 
 	private void setO(JButton button) {
 		button.setText("O");
 		button.setBackground(Color.BLUE);
 		button.setForeground(Color.WHITE);
+		button.setCursor(blockCursor);
 	}
 
 	/**
