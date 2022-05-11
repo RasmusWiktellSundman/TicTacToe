@@ -14,7 +14,7 @@ public class TileAndMoveManager {
 	private char[][] tiles = new char[3][3];
 	// Används för att effektivisera draw. Genom att ha en variabel behöver draw metoden inte loopa igenom hela arrayen vid varje drag.
 	private int totalMoves = 0;
-	private GameEngine gameEngine;
+	private final GameEngine gameEngine;
 
 	public TileAndMoveManager(GameEngine gameEngine) {
 		this.gameEngine = gameEngine;
