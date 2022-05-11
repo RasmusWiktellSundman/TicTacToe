@@ -67,13 +67,15 @@ public class GamePanel extends JPanel {
 						Game.getMainFrame().setErrorMessage("Du måste starta spelet.");
 						return;
 					}
+
 					// Tar bort gamla felmeddelanden
 					Game.getMainFrame().removeErrorMessage();
+
 					// Sparar vilken spelare som gjorde draget, för att sätta rutan till den spelaren, ifall draget är giltigt.
 					char player = engine.getNextPlayer();
 					try {
 						engine.getTileAndMoveManager().moveAndUpdateNextPlayer(finalX, finalY);
-						Game.getMainFrame().updateNextPlayer(engine.getNextPlayer());
+						Game.getMainFrame().setNextPlayer(engine.getNextPlayer());
 
 						JButton button = (JButton) e.getSource();
 						button.setCursor(blockCursor);

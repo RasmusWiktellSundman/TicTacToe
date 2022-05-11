@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
 	public MainFrame(String title) {
 		// Initiera JFrame
 		super(title);
-		// Sätt innehållet för JFrame
+		// Sätt innehållet för JFrame till mainframe (.form filen)
 		setContentPane(panelMain);
 		// Ändrar JFrames standard storlek
 		setSize(600, 300);
@@ -53,20 +53,37 @@ public class MainFrame extends JFrame {
 		labelError.setText(" ");
 	}
 
-	public void updateNextPlayer(char player) {
-		labelNextPlayer.setText("Nästa spelare: " + Character.toUpperCase(player));
+	/**
+	 * Uppdaterar texten med vems tur det är om spelet är igång.
+	 *
+	 * @param player Spelaren du vill sätta till nästa
+	 */
+	public void setNextPlayer(char player) {
+		setNextPlayer(player, false);
+	}
+
+	/**
+	 * Uppdaterar texten med vems tur det är.
+	 * @param player Spelaren du vill sätta till nästa
+	 * @param force  Om spelaren ska uppdateras även om spelet inte är igång.
+	 */
+	public void setNextPlayer(char player, boolean force) {
+		if (Game.getGameEngine().isRunning() || force) {
+			labelNextPlayer.setText("Nästa spelare: " + Character.toUpperCase(player));
+		}
 	}
 
 	public void startGame() {
 		startGameButton.setEnabled(false);
 		gamePanel.restart();
 		removeErrorMessage();
-		updateNextPlayer(Game.getGameEngine().getNextPlayer());
+		setNextPlayer(Game.getGameEngine().getNextPlayer());
 	}
 
 	public void endGame() {
 		startGameButton.setEnabled(true);
 		gamePanel.end();
+		setNextPlayer('-', true);
 	}
 
 	{
