@@ -4,7 +4,7 @@ import se.rmsit.TicTacToe.Game;
 import se.rmsit.TicTacToe.display.ResultPanel;
 
 public class VictoryManager {
-	private TileAndMoveManager tileMoveManager;
+	private final TileAndMoveManager tileMoveManager;
 
 	public VictoryManager(TileAndMoveManager tileAndMoveManager) {
 		this.tileMoveManager = tileAndMoveManager;
