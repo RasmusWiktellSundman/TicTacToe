@@ -9,8 +9,8 @@ public class Game {
 	private static GameEngine gameEngine;
 
 	public static void main(String[] args) {
-		mainFrame = new MainFrame("Tic Tac Toe");
 		gameEngine = new GameEngine();
+		mainFrame = new MainFrame("Tic Tac Toe");
 	}
 
 	public static void startGame() {
