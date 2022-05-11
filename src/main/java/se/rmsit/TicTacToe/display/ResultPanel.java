@@ -38,6 +38,8 @@ public class ResultPanel {
 	}
 
 	public static void addDraw() {
+		instance.xVictories++;
+		instance.oVictories++;
 		instance.txtAreaResult.append("Oavgjort\n");
 		instance.txtAreaResult.append(getScoreMessage() + "\n");
 	}
