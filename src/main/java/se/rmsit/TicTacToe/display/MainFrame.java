@@ -48,6 +48,11 @@ public class MainFrame extends JFrame {
 		labelError.setText(message);
 	}
 
+	public void removeErrorMessage() {
+		// Sätter till mellanrum för att label inte ska försvinna och ändra positionering av andra element i designen
+		labelError.setText(" ");
+	}
+
 	public void updateNextPlayer(char player) {
 		labelNextPlayer.setText("Nästa spelare: " + Character.toUpperCase(player));
 	}
@@ -55,6 +60,7 @@ public class MainFrame extends JFrame {
 	public void startGame() {
 		startGameButton.setEnabled(false);
 		gamePanel.restart();
+		removeErrorMessage();
 	}
 
 	public void endGame() {

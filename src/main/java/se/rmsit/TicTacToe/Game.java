@@ -17,21 +17,11 @@ public class Game {
 		gameEngine.startGame();
 		mainFrame.startGame();
 		mainFrame.updateNextPlayer(gameEngine.getNextPlayer());
-		removeErrorMessage();
 	}
 
 	public static void endGame() {
 		gameEngine.setRunning(false);
 		mainFrame.endGame();
-	}
-
-	public static void setErrorMessage(String message) {
-		mainFrame.setErrorMessage(message);
-	}
-
-	public static void removeErrorMessage() {
-		// Sätter till mellanrum för att label inte ska försvinna och ändra positionering av andra element i designen
-		mainFrame.setErrorMessage(" ");
 	}
 
 	// getters and setters

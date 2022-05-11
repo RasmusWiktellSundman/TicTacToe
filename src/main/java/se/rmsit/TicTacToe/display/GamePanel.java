@@ -64,11 +64,11 @@ public class GamePanel extends JPanel {
 				buttons[y][x].addActionListener(e -> {
 					GameEngine engine = Game.getGameEngine();
 					if(!engine.isRunning()) {
-						Game.setErrorMessage("Du måste starta spelet.");
+						Game.getMainFrame().setErrorMessage("Du måste starta spelet.");
 						return;
 					}
 					// Tar bort gamla felmeddelanden
-					Game.removeErrorMessage();
+					Game.getMainFrame().removeErrorMessage();
 					// Sparar vilken spelare som gjorde draget, för att sätta rutan till den spelaren, ifall draget är giltigt.
 					char player = engine.getNextPlayer();
 					try {
@@ -83,7 +83,7 @@ public class GamePanel extends JPanel {
 						else
 							setO(button);
 					} catch (TileOccupiedException ex) {
-						Game.setErrorMessage("Rutan är upptagen, välj en annan!");
+						Game.getMainFrame().setErrorMessage("Rutan är upptagen, välj en annan!");
 					}
 				});
 			}
