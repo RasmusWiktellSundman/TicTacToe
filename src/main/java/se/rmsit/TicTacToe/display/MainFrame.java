@@ -61,6 +61,7 @@ public class MainFrame extends JFrame {
 		startGameButton.setEnabled(false);
 		gamePanel.restart();
 		removeErrorMessage();
+		updateNextPlayer(Game.getGameEngine().getNextPlayer());
 	}
 
 	public void endGame() {

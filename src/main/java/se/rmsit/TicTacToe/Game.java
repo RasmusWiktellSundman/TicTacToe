@@ -16,7 +16,6 @@ public class Game {
 	public static void startGame() {
 		gameEngine.startGame();
 		mainFrame.startGame();
-		mainFrame.updateNextPlayer(gameEngine.getNextPlayer());
 	}
 
 	public static void endGame() {

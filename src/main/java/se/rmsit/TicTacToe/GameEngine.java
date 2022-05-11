@@ -17,10 +17,10 @@ public class GameEngine {
 	}
 
 	public void startGame() {
-		updatePlayerWhoStarted();
-		nextPlayer = playerWhoStarted;
-		setRunning(true);
+		nextPlayer = getOpposingPlayer(playerWhoStarted);
 		getTileAndMoveManager().resetMoves();
+		updatePlayerWhoStarted();
+		setRunning(true);
 	}
 
 	/**
