@@ -8,8 +8,8 @@ public class GameEngine {
 	// Spelaren som startade rundan (uppdateras vid ny runda)
 	private char playerWhoStarted = 'x';
 	private boolean running = false;
-	private TileAndMoveManager tileMoveManager;
-	private VictoryManager victoryManager;
+	private final TileAndMoveManager tileMoveManager;
+	private final VictoryManager victoryManager;
 
 	public GameEngine() {
 		this.tileMoveManager = new TileAndMoveManager(this);

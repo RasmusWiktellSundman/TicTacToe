@@ -57,8 +57,8 @@ public class GamePanel extends JPanel {
 		for (int y = 0; y < Game.TILE_LENGTH; y++) {
 			for (int x = 0; x < Game.TILE_LENGTH; x++) {
 				// Variablerna behöver vara final för att kunna användas i event lyssnaren
-				int finalX = x;
-				int finalY = y;
+				final int finalX = x;
+				final int finalY = y;
 				// Lägger till lyssnare för knapptryck
 				// När en spelare trycker på en knapp hanteras draget
 				buttons[y][x].addActionListener(e -> {
