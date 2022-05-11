@@ -8,12 +8,13 @@ import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VictoryManagerTest {
+	private GameEngine engine;
 	private TileAndMoveManager tileMoveManager;
 	private VictoryManager victoryManager;
 
 	@BeforeEach
 	void setUp() {
-		GameEngine engine = new GameEngine();
+		engine = new GameEngine();
 		tileMoveManager = engine.getTileAndMoveManager();
 		victoryManager = engine.getVictoryManager();
 	}
@@ -103,6 +104,32 @@ class VictoryManagerTest {
 			// Lägger till drag för sista rutan
 			tileMoveManager.addMove(2, 2, 'o');
 			assertTrue(victoryManager.isDraw());
+		} catch (NullPointerException exception) {
+			// Ignorerar att Game- and ResultPanel-objekt inte är initierade
+			if(!exception.getStackTrace()[0].getClassName().equals("se.rmsit.TicTacToe.Game") &&
+					!exception.getStackTrace()[0].getClassName().contains("ResultPanel")) {
+				throw exception;
+			}
+		}
+	}
+
+	@Test
+	void updatingPlayerWhoStartedOnDraw() throws TileOccupiedException {
+		try {
+			assertEquals('x', engine.getPlayerWhoStarted());
+
+			// Skapar en oavgjord ställning
+			tileMoveManager.addMove(0, 0, 'x');
+			tileMoveManager.addMove(1, 0, 'o');
+			tileMoveManager.addMove(2, 0, 'x');
+			tileMoveManager.addMove(0, 1, 'x');
+			tileMoveManager.addMove(1, 1, 'x');
+			tileMoveManager.addMove(2, 1, 'o');
+			tileMoveManager.addMove(0, 2, 'o');
+			tileMoveManager.addMove(1, 2, 'x');
+			tileMoveManager.addMove(2, 2, 'o');
+
+			assertEquals('o', engine.getPlayerWhoStarted());
 		} catch (NullPointerException exception) {
 			// Ignorerar att Game- and ResultPanel-objekt inte är initierade
 			if(!exception.getStackTrace()[0].getClassName().equals("se.rmsit.TicTacToe.Game") &&
