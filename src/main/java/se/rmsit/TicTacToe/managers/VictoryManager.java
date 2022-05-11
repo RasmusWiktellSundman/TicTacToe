@@ -83,7 +83,7 @@ public class VictoryManager {
 		// Steg 2, kolla diagonaler från höger top till vänster botten
 		tilesOccupiedOfPlayer = 0;
 		for (int coordinate = 2; coordinate >= 0; coordinate--) {
-			// När y är som mest måste y vara som minst, när y är ett mindre är x ett mer.
+			// När x är som mest måste y vara som minst, när y är ett mindre är x ett mer.
 			// Tar minus 1 då Game.TILE_LENGTH är ett antal (där 0 inte representerar första)
 			if(tileMoveManager.getPlayerOnTile((Game.TILE_LENGTH-1)-coordinate, coordinate) == player)
 				tilesOccupiedOfPlayer++;
