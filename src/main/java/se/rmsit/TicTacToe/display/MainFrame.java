@@ -23,15 +23,15 @@ public class MainFrame extends JFrame {
 		// Initiera JFrame
 		super(title);
 		// Sätt innehållet för JFrame
-		this.setContentPane(this.panelMain);
+		setContentPane(panelMain);
 		// Ändrar JFrames standard storlek
-		this.setSize(600, 300);
+		setSize(600, 300);
 		// center window
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		// Stänger av programmet när användaren stänger programmet. Annars kör den i bakgrunden.
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Visar JFramen
-		this.setVisible(true);
+		setVisible(true);
 
 		addListeners();
 	}

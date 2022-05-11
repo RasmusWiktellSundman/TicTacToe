@@ -24,7 +24,7 @@ public class GamePanel extends JPanel {
 		layout.setHgap(10);
 		layout.setVgap(10);
 		// Sätter panelens layout till att använda GridLayout
-		this.setLayout(layout);
+		setLayout(layout);
 	}
 
 	private void setupButtons() {
@@ -40,7 +40,7 @@ public class GamePanel extends JPanel {
 			button.setBackground(Color.GRAY);
 
 			// Lägg till i panelen
-			this.add(button);
+			add(button);
 
 			// Lägg in i buttons array
 			buttons[y][x] = button;
