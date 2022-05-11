@@ -11,7 +11,7 @@ import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
  */
 public class TileAndMoveManager {
 	// Information om vilka drag som gjorts på vilken position i koordinat systemet, där tiles[0][0] är högst upp till vänster
-	private char[][] tiles = new char[3][3];
+	private char[][] tiles = new char[Game.TILE_LENGTH][Game.TILE_LENGTH];
 	// Används för att effektivisera draw. Genom att ha en variabel behöver draw metoden inte loopa igenom hela arrayen vid varje drag.
 	private int totalMoves = 0;
 	private final GameEngine gameEngine;
