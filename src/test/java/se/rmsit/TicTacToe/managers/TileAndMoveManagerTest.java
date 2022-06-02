@@ -29,7 +29,7 @@ class TileAndMoveManagerTest {
 		manager.addMove(0, 0, 'x');
 		assertArrayEquals(expectedResult, manager.getMoves());
 		manager.addMove(1, 2, 'o');
-		expectedResult[2][1] = 'o';
+		expectedResult[1][2] = 'o';
 		assertArrayEquals(expectedResult, manager.getMoves());
 	}
 
@@ -81,7 +81,7 @@ class TileAndMoveManagerTest {
 		manager.moveAndUpdateNextPlayer(0, 0);
 		assertArrayEquals(expectedResult, manager.getMoves());
 		manager.moveAndUpdateNextPlayer(1, 2);
-		expectedResult[2][1] = 'o';
+		expectedResult[1][2] = 'o';
 		assertArrayEquals(expectedResult, manager.getMoves());
 	}
 

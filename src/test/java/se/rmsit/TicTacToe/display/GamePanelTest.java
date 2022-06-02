@@ -21,7 +21,7 @@ class GamePanelTest {
 		JButton[][] buttons = gamePanel.getButtons();
 		for (int y = 0; y < Game.TILE_LENGTH; y++) {
 			for (int x = 0; x < Game.TILE_LENGTH; x++) {
-				assertInstanceOf(JButton.class, buttons[y][x]);
+				assertInstanceOf(JButton.class, buttons[x][y]);
 			}
 		}
 	}

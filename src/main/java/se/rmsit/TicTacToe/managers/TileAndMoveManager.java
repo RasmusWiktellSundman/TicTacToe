@@ -11,6 +11,7 @@ import se.rmsit.TicTacToe.exceptions.TileOccupiedException;
  */
 public class TileAndMoveManager {
 	// Information om vilka drag som gjorts på vilken position i koordinat systemet, där tiles[0][0] är högst upp till vänster
+	// Structure: char[x][y]
 	private char[][] tiles = new char[Game.TILE_LENGTH][Game.TILE_LENGTH];
 	// Används för att effektivisera draw. Genom att ha en variabel behöver draw metoden inte loopa igenom hela arrayen vid varje drag.
 	private int totalMoves = 0;
@@ -50,14 +51,14 @@ public class TileAndMoveManager {
 		if(isSquareOccupied(x, y)) {
 			throw new TileOccupiedException();
 		}
-		tiles[y][x] = player;
+		tiles[x][y] = player;
 		totalMoves++;
 
 		gameEngine.getVictoryManager().handleVictory();
 	}
 
 	public char getPlayerOnTile(int x, int y) {
-		return tiles[y][x];
+		return tiles[x][y];
 	}
 
 	/**
@@ -77,7 +78,7 @@ public class TileAndMoveManager {
 
 	private boolean isSquareOccupied(int x, int y) {
 		// Kollar om char-arrayen innehåller chars default värde. Om den inte gör det, är den platsen upptagen
-		return tiles[y][x] != '\u0000';
+		return tiles[x][y] != '\u0000';
 	}
 
 	public void resetMoves() {

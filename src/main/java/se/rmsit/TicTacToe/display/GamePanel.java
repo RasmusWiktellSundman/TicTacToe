@@ -44,7 +44,7 @@ public class GamePanel extends JPanel {
 			add(button);
 
 			// Lägg in i buttons array
-			buttons[y][x] = button;
+			buttons[x][y] = button;
 			x++;
 			// Nollställ x när vi kommer till slutet av en rad och öka y
 			if(x > Game.TILE_LENGTH - 1) {
